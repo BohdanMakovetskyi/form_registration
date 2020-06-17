@@ -1,0 +1,58 @@
+body {
+  background: rgb(241, 237, 237);
+}
+
+p  {
+  color: rgb(102, 92, 92);
+  margin: 0;
+  padding: 0;
+}
+
+.App {
+  font-family: sans-serif;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+.box {
+  padding-top: 50px;
+  margin-top: 50px;
+  border: 2px solid rgb(61, 49, 49);
+  width: 400px;
+  height: 380px;
+  position: relative;
+  border-radius: 20px;
+}
+
+.input {
+  padding: 10px 20px 10px 20px;
+  width: 250px;
+  margin-bottom: 35px;
+  border: 1px solid rgb(61, 49, 49);
+  border-radius: 5px;
+}
+
+.select_gender {
+  padding: 5px 20px 5px 20px;
+  margin-bottom: 50px;
+  border: 1px solid rgb(61, 49, 49);
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.button {
+  background-color: #fff;
+  border: 1px solid rgb(61, 49, 49);
+  border-radius: 5px;
+  cursor: pointer;
+  width: 200px;
+  padding: 7px 0px 7px 0px;
+}
+
+.incorrect {
+  color: red;
+  position: absolute;
+  top: 20px;
+  left: 90px;
+  font-weight: bold;
+}
