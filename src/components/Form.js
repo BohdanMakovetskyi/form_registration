@@ -12,8 +12,8 @@ const genders = [
 ];
 
 const Form = () => {
-  let [valueE, setEmail] = useState('');
-  let [valueP, setPassword] = useState('');
+  const [valueE, setEmail] = useState('');
+  const [valueP, setPassword] = useState('');
   const [incorrect, check] = useState('');
   let classNameA = 'input';
   let classNameB = 'input';
