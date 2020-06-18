@@ -12,9 +12,11 @@ const genders = [
 ];
 
 const Form = () => {
-  const [valueE, setEmail] = useState('');
-  const [valueP, setPassword] = useState('');
-  const [allGood, good] = useState(true);
+  let [valueE, setEmail] = useState('');
+  let [valueP, setPassword] = useState('');
+  const [incorrect, check] = useState('');
+  let classNameA = 'input';
+  let classNameB = 'input';
 
   const onInputChangeE = (event) => {
     setEmail(event.target.value);
@@ -24,24 +26,47 @@ const Form = () => {
     setPassword(event.target.value);
   }
 
-  const validation = (valueP, valueE) => {
-    if (valueP.length < 6 || valueE.match(/^...+@..+\...+$/) == null) {
-      good(false);
+  const whatIncorrect = (valueP, valueE) => {
+    if (valueP.length < 6 && valueE.match(/^...+@..+\...+$/) == null) {
+      return 'emailandpassword';
+    } else if (valueE.match(/^...+@..+\...+$/) == null) {
+      return 'email';
+    } else if (valueP.length < 6) {
+      return 'password';
     } else {
-      good(true);
+      return 'good';
     }
+  }
+
+  const validation = (valueP, valueE) => {
+    check(whatIncorrect(valueP, valueE));
+  }
+
+  if (incorrect === 'emailandpassword') {
+    classNameA += ' red';
+    classNameB += ' red';
+  } else if (incorrect === 'password') {
+    classNameA += ' red';
+  } else if (incorrect === 'email') {
+    classNameB += ' red';
+  } else if (incorrect === 'good') {
+    setEmail('');
+    setPassword('');
   }
 
   return (
     <div className='box'>
       {
-        allGood ? null : (<p className='incorrect'>Incorrect email or password!</p>)
+        incorrect === 'emailandpassword' ? (<p className='incorrect'>Incorrect email and password!</p>) :
+          incorrect === 'email' ? <p className='incorrect'>Incorrect email!</p> :
+            incorrect === 'password' ? <p className='incorrect'>Incorrect password!</p> :
+              incorrect === 'good' ? <p className='success'>Success!</p> : null
       }
       <p>Email</p>
-      <input className='input' type='email' placeholder='example: aaa@aaa.aa' value={valueE} onChange={(event) => onInputChangeE(event)} />
+      <input className={classNameB} type='email' placeholder='example: aaa@aaa.aa' value={valueE} onChange={(event) => { onInputChangeE(event) }} />
       <br />
       <p>Password</p>
-      <input className='input' type='password' placeholder='min 6' value={valueP} onChange={(event) => onInputChangeP(event)} />
+      <input className={classNameA} type='password' placeholder='min 6' value={valueP} onChange={(event) => { onInputChangeP(event) }} />
       <br />
       <p>Gender</p>
       <select className='select_gender'>
