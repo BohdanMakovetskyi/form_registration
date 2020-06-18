@@ -49,10 +49,7 @@ const Form = () => {
     classNameA += ' red';
   } else if (incorrect === 'email') {
     classNameB += ' red';
-  } else if (incorrect === 'good') {
-    setEmail('');
-    setPassword('');
-  }
+  } 
 
   return (
     <div className='box'>

@@ -12,16 +12,14 @@ class EventEmitter {
     }
   }
 
-  on(event, func) {
-    if (this.events[event]) {
-      // don't add duplicates.
-      if (this.events[event].indexOf(func) !== -1) return;
-      return this.events[event].push(func);
+  on(eventName, func) {
+    if(!this.events[eventName]) {
+      this.events[eventName] = [];
     }
-    this.events[event] = [func];
+      
+    this.events[eventName].push(fn);
 
     return () => {
-      //delete specific listener
       this.events = this.events[event].filter(eventFunc => eventFunc !== func);
     }
   }
